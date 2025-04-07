@@ -1,0 +1,51 @@
+<div class="row">
+
+    <div class="col-4">
+    One Way Binding from ts to html 
+    </div>
+    <div class="col-4">
+
+    </div>
+
+    <div class="col-4">
+        
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-4">
+
+        <div class="row">
+            <div class="col-4 bg-success">
+                Interpolation
+               <h4>{{courseName}}</h4> 
+            <div>{{inputType}}</div>
+            <input type="{{inputType}}" [value]="courseName" placeholder="select" />
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+
+        <button class="btn btn-success" (click)="ShowAlart('Hello')" >Show Message</button>
+        <button class="btn btn-success" (click)="ChangeMessage()" >Change Message</button>
+
+
+    </div>
+
+    <div class="col-4">
+        <input type="text" [(ngModel)]="courseName"/> -- {{courseName}}
+
+        <select [(ngModel)]="stateName">
+            <option value="">--Select--</option>
+            <option value="1">Dhaka</option>
+            <option value="2">Chittagong</option>
+            <option value="3">Syhlet</option>
+        </select>
+        
+    </div>
+
+    <div class="col-6">
+        <h2>{{firstName()}}</h2>
+    </div>
+</div>
