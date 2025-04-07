@@ -1,0 +1,195 @@
+<div class="mt-2 p-2 bg-secondary text-white rounded">
+    <h1>Conditional Statement</h1>
+    <p>if-else, for, Switch statement</p>
+
+    <li><a class="nav-item" [routerLink]="['/structural-dir']" >Go to Structural</a></li>
+
+</div>
+
+
+<div class="row pt-3">
+    <div class="col-3">
+        @if(isDiv1Show){
+        <div class="h-100 d-flex align-items-center justify-content-center" [ngClass]="div1Color">
+            <h4>Div-1</h4>
+        </div>
+    }
+    </div>
+
+    <div class="col-3">
+       @if(isDiv2Show){
+        <div class="bg-danger p-3 text-center">
+            <div>
+                <h4>Div-2</h4>
+            </div>
+        </div>
+    }@else{
+        <div class="bg-warning p-3 text-center">
+            <div>
+                <h4>Div-2</h4>
+            </div>
+        </div>  
+    }
+       
+    </div>
+
+    <div class="col-3">
+        @if(num1 === num2){
+            <div class="bg-secondary p-3 text-center">
+                <h4>Div-3</h4>
+            </div>
+        }
+       
+    </div>
+
+    <div class="col-3">
+        
+        <!-- <div *ngIf="isActive" class="bg-success p-3 text-center">
+            <h4>Div-4</h4>
+        </div>
+        -->
+            <div class="p-3 text-center bg-success">
+                @if(selectedValue=='1'){
+                    <p>Student is Active</p>
+                }@else if(selectedValue=='2'){
+                    <p>Student is De-Active</p>
+                }@else if(selectedValue=='3'){
+                    <p>Student is Pending</p>
+                }@else{
+                    <p>Please select</p>
+                }
+            </div>
+        
+
+    </div>
+
+</div>
+
+<div class="row pt-3">
+    <div class="col-3 text-center">
+        <button class="btn btn-primary" (click)="showDiv()">Show</button>
+        <button class="btn btn-danger" (click)="hideDiv()">Hide</button>
+    </div>
+
+    <div class="col-3 text-center">
+        <button class="btn btn-primary" (click)="toggleShow()">Toggle</button>
+    </div>
+
+    <div class="col-3 text-center">
+        <div class="d-flex align-items-center gap-2 w-100">
+            <input [(ngModel)]="num1" type="text" class="form-control" placeholder="num-1" />
+            <input [(ngModel)]="num2" type="text" class="form-control" placeholder="num-2" />
+        </div>
+    </div>
+
+    <div class="col-3 text-center">
+        <div class="d-flex align-items-center gap-2 w-100">
+            <input [(ngModel)]="isActive" type="checkbox"/>
+            <select [(ngModel)]="selectedValue" style="width: 100%;">
+                <option value="0">--select--</option>
+                <option value="1">Dhaka</option>
+                <option value="2">Ctg</option>
+                <option value="3">Sylhet</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="row">
+
+    <div class="col-3">
+        <ul>
+            @for(item of arrStudents; track $index){
+                <Li>{{item.name}}</Li>
+            }
+           
+        </ul>
+    </div>
+
+    <div class="col-3">
+        <select [(ngModel)]="selectedItem">
+            @for(item of arrStudents; track $index){
+                <option [value]="item.id">{{item.name}}</option>
+            }
+        </select>
+
+        <div><h3>{{selectedItem}}</h3></div>
+    </div>
+
+    <div class="col-3">
+        <input type="number" [(ngModel)]="weekValue" placeholder="Week" />
+
+    </div>
+    <div class="col-3">
+        Week Name is: 
+        @switch(weekValue){
+            @case(1){
+                <span>Saturday</span>
+            } 
+            @case(2){
+                <span>Sunday</span>
+            }
+            @case(3){
+                <span>Monday</span>
+            }
+            @case(4){
+                <span>Tuesday</span>
+            }
+            @case(5){
+                <span>Wednesday</span>
+            }
+            @case(6){
+                <span>Thursday</span>
+            }
+            @case(7){
+                <span>Friday</span>
+            }
+            @default{
+                <span>Wrong Entry</span>
+            }
+        }
+    </div>
+    
+</div>
+
+
+<div class="row">
+    <div class="col-6">
+        <table class="table table-boardered">
+            <thead>
+                <tr>
+                    <th>Gender</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Status</th>
+                    <th>Marks</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(stud of arrStudents; track $index){
+                <tr>
+                   
+
+                    <td>{{stud.gender}}</td>
+                    <td>{{stud.name}}</td>
+                    <td>{{stud.city}}</td>
+                    <td [ngStyle]="{'background-color': stud.isActive ? 'green': 'red'}">
+                        <span>{{stud.isActive ? 'Active' : 'De-Active'}}</span>
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar" [ngStyle]="{'width':stud.marks+ '%'}">{{stud.marks}}%</div>
+                          </div>
+                    </td>
+
+             
+                </tr>
+            }
+               
+            </tbody>
+        </table>
+    </div>
+</div>

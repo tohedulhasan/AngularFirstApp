@@ -1,0 +1,92 @@
+<div class="mt-2 p-2 bg-secondary text-white rounded">
+    <h1>Reactive Form</h1>
+    <p>Using FormGroup, FormControl</p>
+</div>
+
+
+<form class="row g-3 needs-validation" novalidate [formGroup]="studentForm">
+    <div class="col-md-4">
+        <label for="validationCustom01" class="form-label">First name</label>
+        <input type="text" class="form-control" id="validationCustom01" formControlName ="firstName" required minlength="3">
+        
+        <div class="text-danger">
+            @if(studentForm.controls['firstName'].touched && studentForm.controls['firstName'].errors?.['required']){
+                <span>This is required</span>
+            } @else if(studentForm.controls['firstName'].touched && studentForm.controls['firstName'].errors?.['minlength']){
+                <span>Min 3 char required</span>
+            }
+        </div>
+      
+    </div>
+    <div class="col-md-4">
+        <label for="validationCustom02" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="validationCustom02" formControlName="lastName" >
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="validationCustomUsername" class="form-label">Username</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+            <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend"
+            formControlName="userName" >
+        </div>
+        <div class="text-danger">
+            @if(studentForm.controls['userName'].touched && studentForm.controls['userName'].errors?.['email']){
+                <span>invalid email address</span>
+            }
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="validationCustom03" class="form-label">City</label>
+        <input type="text" class="form-control" id="validationCustom03" formControlName="city" >
+        <div class="invalid-feedback">
+            Please provide a valid city.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationCustom04" class="form-label">State</label>
+        <select class="form-select" id="validationCustom04" formControlName="state" >
+            <option selected disabled >Choose...</option>
+            <option value="dhk">Dhaka</option>
+            <option value="ctg">Chittagong</option>
+            <option value="cum">Cumilla</option>
+        </select>
+        <div class="invalid-feedback">
+            Please select a valid state.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="validationCustom05" class="form-label">Zip</label>
+        <input type="text" class="form-control" id="validationCustom05" formControlName="zipCode" required>
+        <div class="invalid-feedback">
+            Please provide a valid zip.
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="invalidCheck" formControlName="isAcceptTerms" >
+            <label class="form-check-label" for="invalidCheck">
+                Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+                You must agree before submitting.
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="studentForm.invalid" (click)="submitForm()">Submit form</button>
+    </div>
+    <div class="col-3">
+       
+    </div>
+
+</form>
+
+<div class="row">
+    
+    <div class="col-5">
+        {{studentValue| json}}
+    </div>
+</div>
